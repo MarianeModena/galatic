@@ -1,0 +1,16 @@
+---
+title: "Modena"
+author: "Mariane Modena"
+format: html
+---
+
+```{r}
+#| message: false
+here::i_am("galatic.Rproj")
+library(here)
+library(vroom)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
