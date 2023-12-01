@@ -18,3 +18,6 @@ library(ggplot2)
 
 I already included all the datasets in the first commit...
 
+# Question 2
+
+Link the github repository : [here](https://github.com/MarianeModena/galatic)
