@@ -61,10 +61,73 @@ summary1 <- planet |> summarise(
             "Number of variables" = ncol(planet),
             "Number of observations with at least one missing value" = sum(rowSums(is.na(planet)) > 0)
 )
-                                                              
+ 
+knitr::kable(summary1)
+```
+
+
+## Question 5
+
+```{r}
+planet |> 
+  filter(!is.na(`mass (earth)` & !is.na(`density (earth)`))) |>
+  ggplot(aes(x=`mass (earth)`, y=`density (earth)`)) + 
+  geom_point()
+```
+
+## Question 6 
+
+```{r}
+summary2 <- planet |> 
+  summarise(
+  "densest planet" = which.max(`density (earth)`),
+  "least dense planet" = which.min(`density (earth)`),
+  "heavier planet" = which.max(`mass (earth)`),
+  "lightest planet" = which.min(`mass (earth)`),
+  "bigger radius" = which.max(radius),
+  "smaller radius" = which.min(radius)
+  
+            )
+
+knitr::kable(summary2)
+```
+
+## Question 7 
+
+```{r}
+library(stringr)
+
+terrain <- planet |>
+  reframe("terrain" =unlist(str_split(`TYPE_TERRAIN`, ";")))
+
+climat <- planet |>
+  reframe("climat" =unlist(str_split(`Climate Type`, ";")))
 ```
 
 
 
+## Question 8 
 
+```{r}
+climat |>
+  group_by(climat) |>
+  summarise("number of climats" = n()) |>
+  ggplot(aes(x=`number of climats`)) +
+    geom_bar()
+```
 
+```{r}
+
+terrain |>
+  group_by(terrain) |>
+  summarise("number of terrains" = n()) |>
+  ggplot(aes(x=`number of terrains`)) + 
+  geom_bar()
+
+````
+
+```{r}
+terrain |> distinct(terrain)
+```
+
+There are 93 different terrains so the distribution looks ok.
