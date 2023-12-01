@@ -14,10 +14,45 @@ library(tidyr)
 library(ggplot2)
 ```
 
-# Question 1
+## Question 1
 
 I already included all the datasets in the first commit...
 
-# Question 2
+## Question 2
 
 Link the github repository : [here](https://github.com/MarianeModena/galatic)
+
+## Question 3
+
+```{r}
+library(vroom)
+planet <- vroom("data/ALL%PLANETS.csv", na=c("missing", NA),locale = locale(grouping_mark = ".", decimal_mark = ",", encoding = "UTF-8"))
+```
+
+```{r}
+planet |> nrow()
+```
+
+There are `r nrow(planet)` planets in the dataset as expected.
+
+```{r}
+planet |> ncol()
+```
+
+There are `r ncol(planet)` variables in the dataset as expected.
+
+The numerical variables we expect are "mass (earth)", "radius", "density (earth)", "Star_code", "planet_idx"
+
+```{r}
+planet |> select(where(is.numeric))
+```
+
+All the expected numerical variables are numeric.
+
+```{r}
+planet |> select(where(is.character))
+```
+
+
+
+
