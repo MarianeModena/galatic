@@ -41,7 +41,7 @@ planet |> ncol()
 
 There are `r ncol(planet)` variables in the dataset as expected.
 
-The numerical variables we expect are "mass (earth)", "radius", "density (earth)", "Star_code", "planet_idx"
+The numerical variables we expect are "mass (earth)", "radius", "density (earth)", "Star_code", "Planet_idx"
 
 ```{r}
 planet |> select(where(is.numeric))
@@ -52,6 +52,18 @@ All the expected numerical variables are numeric.
 ```{r}
 planet |> select(where(is.character))
 ```
+
+## Question 4
+
+```{r}
+summary1 <- planet |> summarise(
+            "Number of observations" = nrow(planet),
+            "Number of variables" = ncol(planet),
+            "Number of observations with at least one missing value" = sum(rowSums(is.na(planet)) > 0)
+)
+                                                              
+```
+
 
 
 
